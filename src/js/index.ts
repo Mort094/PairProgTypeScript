@@ -2,6 +2,7 @@ import axios, {
     AxiosResponse,
     AxiosError 
 } from "../../node_modules/axios/index"
+import { resolve } from "../../webpack.config"
 
 interface ICd{
     id: number
@@ -18,19 +19,20 @@ new Vue({
     // which is included at the bottom of the html file.
     el: "#app",
     data: {
-        cd: []
+        cds: []
      
         
     },
     methods: {
-        sayHello() {
-            console.log("Say Hello " + this.name)
-            if (this.name == "") {
-                this.greeting = "Hello NoName"
-            }
-            else {
-                this.greeting = "Hello " + this.name
-            }
+        GetAllCD() {
+            axios.get<ICd[]>(baseUrl)
+            .then((response: AxiosResponse<ICd[]>) => {
+                this.cds = response.data
+            })
+            .catch((error: AxiosError) => {
+                alert(error.message)
+            })
+        },
         }
     }
 })
