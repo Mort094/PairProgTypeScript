@@ -18,16 +18,16 @@
 <body>
   <h1>Hello</h1>
   <div id="app">
-    <!--<input v-model="name" placeholder="Name">!-->
-    <button v-on:click="GetAllCD()" class="btn btn-primary">Get All CD</button>
-    <!--<div>{{ greeting }}</div>!-->
+    <button v-on:click="GetAllCD" class="btn btn-primary">Get All CD</button>
+    <ul id="cdliste" v-if="cds.length">
+      <li v-for="cd in cds">
+        Title: {{cd.title}}, Artist: {{cd.artist}}, Duration of the cd: {{cd.duration}}, number of tracks: {{cd.numberOfTracks}}, year of publication: {{cd.yearOfPublication}}
+      </li>
+    </ul>
+
   </div>
 
-  <ul id="cdliste" v-if="cds.length">
-    <li v-for="cd in cds">
-      {{cd.title}} 
-    </li>
-  </ul>
+
 
   <script src="bundle.js"></script>
 </body>

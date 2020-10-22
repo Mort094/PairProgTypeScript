@@ -1,16 +1,16 @@
 import axios, {
     AxiosResponse,
-    AxiosError 
+    AxiosError
 } from "../../node_modules/axios/index"
 import { resolve } from "../../webpack.config"
 
-interface ICd{
+interface ICd {
     id: number
     title: string
     artist: string
     duration: number
     numberOfTracks: number
-    yearOfRelease: number
+    yearOfPublication: number
 }
 let baseUrl: string = "http://mort-rest.azurewebsites.net/api/CD"
 new Vue({
@@ -20,19 +20,22 @@ new Vue({
     el: "#app",
     data: {
         cds: []
-     
-        
+
+
     },
     methods: {
-        GetAllCD() {
-            axios.get<ICd[]>(baseUrl)
-            .then((response: AxiosResponse<ICd[]>) => {
-                this.cds = response.data
-            })
-            .catch((error: AxiosError) => {
-                alert(error.message)
-            })
+        helperGetAndShow(url: string) {
+            axios.get<ICd[]>(url)
+                .then((response: AxiosResponse<ICd[]>) => {
+                    this.cds = response.data
+                })
+                .catch((error: AxiosError) => {
+                    alert(error.message)
+                })
         },
-        }
+        GetAllCD() {
+            this.helperGetAndShow(baseUrl)
+        },
     }
+}
 })
