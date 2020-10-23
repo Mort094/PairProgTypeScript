@@ -18,13 +18,34 @@
 <body>
   <h1>Hello</h1>
   <div id="app">
-    <button id="GetAllButton" v-on:click="GetAllCD" class="btn btn-primary">Get All CD</button>
-    <ul id="cdliste" v-if="cds.length">
-      <li v-for="cd in cds">
-        Title: {{cd.title}}, Artist: {{cd.artist}}, Duration of the cd: {{cd.duration}}, number of tracks: {{cd.numberOfTracks}}, year of publication: {{cd.yearOfPublication}}
-      </li>
-    </ul>
+    <div id="GetAllSec" class="border" style="margin: 10px; background-color: lightblue; min-height: 200px; border-radius: 5px;">
+      <h2 style="margin-left:10px;">Get all and get by Artist</h2>
 
+      <input v-model="artistToGetBy" type="text" placeholder="Artist" style="margin: 10px;" >
+      <button id="GetArtistButton" v-on:click="getByArtist(artistToGetBy)" class="btn btn-primary" style="margin: 10px;">GetByArtist</button>
+   
+      <button id="GetAllButton" v-on:click="GetAllCD" class="btn btn-primary" style="margin: 10px;">Get All CD</button>
+      <div style="background:white; margin:10px; border-radius: 10px;">
+        <ul id="cdliste" v-if="cds.length">
+          <li v-for="cd in cds">
+            Title: {{cd.title}}, Artist: {{cd.artist}}, Duration of the cd: {{cd.duration}}, number of tracks:
+            {{cd.numberOfTracks}}, year of publication: {{cd.yearOfPublication}}
+          </li>
+        </ul>
+        <div v-else>Ingen cder vist</div>
+      </div>
+    </div>
+    <div id="SearchSec" class="border" style="margin: 10px; background-color: lightblue; min-height: 200px; border-radius: 5px;">
+      <h2 style="margin-left:10px;">Search</h2>
+        <div style="background:white; margin:10px; border-radius: 10px;">
+        <!--<ul id="cdliste" v-if="cds.length">
+          <li v-for="cd in cds">
+            Title: {{cd.title}}, Artist: {{cd.artist}}, Duration of the cd: {{cd.duration}}, number of tracks:
+            {{cd.numberOfTracks}}, year of publication: {{cd.yearOfPublication}}
+          </li>
+        </ul> -->
+      </div>
+    </div>
   </div>
 
 
